@@ -57,18 +57,11 @@ void UTransportVehicle::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 		this->GetOwner()->SetActorLocation(this->ToLocation);
 		this->FromLocation = this->GetOwner()->GetActorLocation();
 
-		/*if (this->CurrentCargo > 0)
-		{
-			this->UnloadCargo();
-			this->TransportDone = false;
-		}
-		this->LoadCargo();
-		this->CurrentCargo = this->Iron + this->Coal + this->Steel + this->Wood;*/
-
 		if (!this->UnloadCargo() || !this->LoadCargo())
 			this->TransportDone = false;
 		this->CurrentCargo = this->Iron + this->Coal + this->Steel + this->Wood;
 		
+		this->TransportTime = FMath::FRandRange(1.0f, 3.0f);
 		this->HasArrived = true;
 		this->TravelTicks = 0;
 		//UE_LOG(LogTemp, Warning, TEXT("Arrived at destination..."));
@@ -78,7 +71,7 @@ void UTransportVehicle::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 	if (this->TransportTicks < this->TransportTime && this->HasArrived)
 	{
 		this->TransportTicks += DeltaTime;
-		if (this->CurrentCargo <= 0 && this->TransportDone)
+		if (this->TransportDone)
 			this->TransportTicks += this->TransportTime;
 		//UE_LOG(LogTemp, Warning, TEXT("Loading/Unloading cargo..."));
 	}
@@ -96,7 +89,7 @@ void UTransportVehicle::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 void UTransportVehicle::SetDestination()
 {
 	// IF VEHICLE HAS CARGO AND CAN DROP OFF CURRENT CARGO, SET DESTINATION FOR DELIVERY TO RESPECTIVE BUILDINGS
-	if (this->CurrentCargo > 0 && CanDropoff() != 0)
+	if (CanDropoff() != 0)
 	{
 		switch (CanDropoff()) {
 		case 1: // If steel or wood can be dropped off
@@ -236,8 +229,11 @@ bool UTransportVehicle::UnloadCargo()
 int UTransportVehicle::CanDropoff()
 {
 	int result = 0;
-	if (this->Steel > 0 && this->SewingMachineFactory->Input1HasSpace() || this->Wood > 0 && this->SewingMachineFactory->Input2HasSpace()) result = 1;
-	else if (this->Coal > 0 && this->Furnace->Input1HasSpace() || this->Iron > 0 && this->Furnace->Input2HasSpace()) result = 2;
+	if (this->CurrentCargo > 0)
+	{
+		if (this->Steel > 0 && this->SewingMachineFactory->Input1HasSpace() || this->Wood > 0 && this->SewingMachineFactory->Input2HasSpace()) result = 1;
+		else if (this->Coal > 0 && this->Furnace->Input1HasSpace() || this->Iron > 0 && this->Furnace->Input2HasSpace()) result = 2;
+	}
 	return result;
 }
 
