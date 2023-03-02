@@ -3,9 +3,6 @@
 GDENG02: Villegas, Hendrik Alexander A.
 Unreal Challenge 1 - Anno 1800
 
-Github Link: https://github.com/NyipNyerp/GDENG02_Villegas
-
-
 Level/Map Name: Anno1800
 Content Folder: Anno1800
 C++ Classes Folder: Anno1800
