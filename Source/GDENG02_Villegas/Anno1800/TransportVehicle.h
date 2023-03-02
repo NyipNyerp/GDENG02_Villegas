@@ -27,19 +27,19 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	
 	// Vehicle Details
-	UPROPERTY(EditAnywhere, Category = "Vehicle") float TransportTime = 3.0f;
-	UPROPERTY(VisibleAnywhere, Category = "Vehicle") float TransportTicks = 0.0f;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Vehicle") float TransportTime = 3.0f;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Vehicle") float TransportTicks = 0.0f;
 	UPROPERTY(EditAnywhere, Category = "Vehicle") int MaxCargo = 4;
 	UPROPERTY(VisibleAnywhere, Category = "Vehicle") int CurrentCargo = 0;
 	UPROPERTY(EditAnywhere, Category = "Cargo") bool TransportDone;
-	UPROPERTY(EditAnywhere, Category = "Cargo") int Iron = 0;
-	UPROPERTY(EditAnywhere, Category = "Cargo") int Coal = 0;
-	UPROPERTY(EditAnywhere, Category = "Cargo") int Steel = 0;
-	UPROPERTY(EditAnywhere, Category = "Cargo") int Wood = 0;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Cargo") int Iron = 0;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Cargo") int Coal = 0;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Cargo") int Steel = 0;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Cargo") int Wood = 0;
 
 	// Vehicle Travel
-	UPROPERTY(EditAnywhere, Category = "Travel") float TravelTime = 10.0f;
-	UPROPERTY(VisibleAnywhere, Category = "Travel") float TravelTicks = 0.0f;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Travel") float TravelTime = 10.0f;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Travel") float TravelTicks = 0.0f;
 	UPROPERTY(VisibleAnywhere, Category = "Travel") AActor* CurrentDestination;
 	UPROPERTY(VisibleAnywhere, Category = "Travel") AActor* NextDestination;
 	UPROPERTY(VisibleAnywhere, Category = "Travel") FVector FromLocation;
