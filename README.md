@@ -28,9 +28,16 @@ Advanced Production Building [Actor Component] : Attached to Furnace and SewingM
 
 Instructions:
 
+When using new Actors:
 1. Attach TransportVehicle component to both Transport Vehicles (PickupTrucks)
 2. Attach BasicProductionBuilding component to CoalMine, IronMine, and LumberjackHut Actors in the Outliner
 3. Attach AdvancedProductionBuilding component to Furnace and SewingMachineFactory Actors in the Outliner
 4. Set the configurable data for all Actors that were assigned an ActorComponent in steps 1-3, in their respective Details Tab
-5. Inside the TransportVehicles Details Tab, assign the references to all Buildings
+5. Inside the TransportVehicles component Details Tab, assign the references to all Buildings
 6. Start Simulation.
+
+Or, using existing blueprints (Already has necessary ActorComponents attached to respective buildings
+1. Inside the Contents folder -> Anno1800 -> Blueprints, drag and drop one of each production building & the transport vehicles (pickuptrucks 1 & 2) into the level.
+2. Set the configurable data for each building  and vehicle blueprint
+3. Inside the TransportVehicles component Details Tab, assign the references to all Buildings
+4. Start Simulation
