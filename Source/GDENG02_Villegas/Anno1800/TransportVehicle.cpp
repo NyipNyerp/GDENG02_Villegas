@@ -56,7 +56,7 @@ void UTransportVehicle::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 	{
 		this->GetOwner()->SetActorLocation(this->ToLocation);
 		this->FromLocation = this->GetOwner()->GetActorLocation();
-
+	
 		if (!this->UnloadCargo() || !this->LoadCargo())
 			this->TransportDone = false;
 		this->CurrentCargo = this->Iron + this->Coal + this->Steel + this->Wood;
